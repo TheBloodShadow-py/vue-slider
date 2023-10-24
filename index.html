@@ -4,12 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>vue slider</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./css/main.css" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
-    <p>test</p>
+    <div id="app">
+      <div class="container2">
+        <div class="slider-wrapper" tabindex="0" @mouseleave="autoPlay()" @mouseover="stopAutoPlay()">
+          <div class="item">
+            <img :src="sliderImg[currentIndex].image" :alt="sliderImg[currentIndex].title" />
+            <div class="text">
+              <h3>{{ sliderImg[currentIndex].title }}</h3>
+              <p>{{ sliderImg[currentIndex].text }}</p>
+            </div>
+          </div>
+
+          <div class="thumbs">
+            <div class="prev" @click="imageSwitcher('up')"></div>
+            <div class="next" @click="imageSwitcher('down')"></div>
+            <div :class="index === currentIndex ? 'active thumb' : 'thumb' " v-for="element, index in sliderImg">
+              <img :src="element.image" :alt="element.title" draggable="false" @click="changeImg(index)" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="./js/main.js"></script>
   </body>
 </html>
